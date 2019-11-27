@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hxyc.dao.ProjectDao">
+  <!--
+  <resultMap id="BaseResultMap" type="com.hxyc.center.model.Project">
+    <result column="projectid" jdbcType="INTEGER" property="projectId" />
+    <result column="projectcode" jdbcType="INTEGER" property="projectCode" />
+    <result column="projectname" jdbcType="VARCHAR" property="projectName" />
+    <result column="areacode" jdbcType="VARCHAR" property="areaCode" />
+    <result column="orgcode" jdbcType="VARCHAR" property="orgCode" />
+    <result column="orgname" jdbcType="VARCHAR" property="orgName" />
+    <result column="projstate" jdbcType="VARCHAR" property="projectState" />
+    <result column="islive" jdbcType="VARCHAR" property="isLive" />
+    <result column="createdate" jdbcType="VARCHAR" property="createDate" />
+    <result column="projectaddress" jdbcType="VARCHAR" property="projectAddress" />
+    <result column="projectmanager" jdbcType="VARCHAR" property="projectManager" />
+    <result column="subpackage" jdbcType="VARCHAR" property="subPackage" />
+    <result column="undertake" jdbcType="VARCHAR" property="underTake" />
+    <result column="projectscale" jdbcType="VARCHAR" property="projectScale" />
+    <result column="acreage" jdbcType="VARCHAR" property="acreage" />
+    <result column="onacreage" jdbcType="VARCHAR" property="overAcreage" />
+    <result column="underacreage" jdbcType="VARCHAR" property="underAcreage" />
+    <result column="quantities" jdbcType="VARCHAR" property="quantities" />
+    <result column="areaname" jdbcType="VARCHAR" property="areaName" />
+    <result column="managertype" jdbcType="VARCHAR" property="managerType" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    projectid,projectcode,projectname,areacode,orgcode,orgname,projstate,islive,createdate,projectaddress,projectmanager,
+    projectmanagerphone,subpackage,undertake,projectscale,acreage,onacreage,underacreage,quantities,areaname,managertype
+  </sql>
+-->
+
+<!--
+
+  <select id="selectProjectByCon" parameterType="com.hxyc.vo.ProjectVO" resultType="com.hxyc.vo.ProjectVO">
+    select  tender.tendercode tenderCode, substring(orgdescription,7) orgAbbreviation, tender.projectname projectName,tender.preopentime openTenderTime,
+    case DAYOFWEEK(tender.preopentime)
+    WHEN 1 then "星期天"
+    WHEN 2 then "星期一"
+    WHEN 3 then "星期二"
+    WHEN 4 then "星期三"
+    WHEN 5 then "星期四"
+    WHEN 6 then "星期五"
+    else "星期六"
+    END "dayOfWeek","1" weekFlag
+    from t_pl_task task  JOIN t_proc_tender tender on task.proctaskid =tender.tenderid
+    <where>
+      <if test="beginOfWeek != null ">
+        and tender.preopentime BETWEEN #{beginOfWeek} and  #{endOfWeek}
+      </if>
+      <if test="purchaseMode != null">
+        and task.purchasemode = #{purchaseMode}
+      </if>
+    </where>
+    UNION
+    select  tender.tendercode tenderCode, substring(orgdescription,7) orgAbbreviation, tender.projectname projectName,tender.preopentime openTenderTime,
+    case DAYOFWEEK(tender.preopentime)
+    WHEN 1 then "星期天"
+    WHEN 2 then "星期一"
+    WHEN 3 then "星期二"
+    WHEN 4 then "星期三"
+    WHEN 5 then "星期四"
+    WHEN 6 then "星期五"
+    else "星期六"
+    END "dayOfWeek","2" weekFlag
+    from t_pl_task task  JOIN t_proc_tender tender on task.proctaskid =tender.tenderid
+    <where>
+      <if test="beginOfNextWeek != null ">
+        and tender.preopentime BETWEEN #{beginOfNextWeek} and  #{endOfNextWeek}
+      </if>
+      <if test="purchaseMode != null">
+        and task.purchasemode = #{purchaseMode}
+      </if>
+    </where>
+
+  </select>
+-->
+  <select id="selectProjectByCon" parameterType="com.hxyc.vo.ProjectVO" resultType="com.hxyc.vo.ProjectVO">
+    select  tender.tendercode tenderCode, substring(orgdescription,7) orgAbbreviation, tender.projectname projectName,tender.preopentime openTenderTime,
+    case DAYOFWEEK(tender.preopentime)
+    WHEN 1 then "星期天"
+    WHEN 2 then "星期一"
+    WHEN 3 then "星期二"
+    WHEN 4 then "星期三"
+    WHEN 5 then "星期四"
+    WHEN 6 then "星期五"
+    else "星期六"
+    END "dayOfWeek","1" weekFlag
+    from t_pl_task task  JOIN t_proc_tender tender on task.proctaskid =tender.tenderid
+    <where>
+      <if test="beginOfWeek != null ">
+        and tender.preopentime BETWEEN #{beginOfWeek} and  #{endOfWeek}
+      </if>
+      <if test="purchaseMode != null">
+        and task.purchasemode = #{purchaseMode}
+      </if>
+    </where>
+    ORDER BY tender.preopentime
+
+  </select>
+
+
+
+
+</mapper>
