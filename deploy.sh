@@ -20,9 +20,9 @@ rm -rf $TOMCAT_APP_PATH/webapps/ROOT
 rm -f $TOMCAT_APP_PATH/webapps/ROOT.war
 rm -f $TOMCAT_APP_PATH/webapps/bullentin-board.war
 
-cp $PROJ_PATH/bullentin-board/target/bullentin-board.war $TOMCAT_APP_PATH/webapps/
+cp $PROJ_PATH/bullentin-board/target/bulletin-board-0.0.1-SNAPSHOT.jar $TOMCAT_APP_PATH/webapps/
 
 cd $TOMCAT_APP_PATH/webapps/
-mv bullentin-board.war ROOT.war
+mv bulletin-board-0.0.1-SNAPSHOT.jar ROOT.jar
 
 cd $TOMCAT_APP_PATH/
