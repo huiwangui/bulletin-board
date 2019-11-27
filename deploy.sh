@@ -26,4 +26,3 @@ cd $TOMCAT_APP_PATH/webapps/
 mv bullentin-board.war ROOT.war
 
 cd $TOMCAT_APP_PATH/
-sh bin/startup.sh
